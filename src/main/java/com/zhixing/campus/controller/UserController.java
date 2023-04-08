@@ -64,6 +64,37 @@ public class UserController {
         queryWrapper.orderByDesc("id");
         return Result.success(userService.page(new Page<>(pageNum, pageSize), queryWrapper));
     }
-
+    @GetMapping("/login")
+    public  Result login(@RequestParam String username,@RequestParam String password){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username",username);
+        queryWrapper.eq("password",password);
+        User user = userService.getOne(queryWrapper);
+        if(user!=null){
+            return Result.success(user);
+        }else{
+            return Result.error("400","用户名或密码错误");
+        }
+    }
+    @GetMapping("/register")
+    public  Result register(@RequestParam String username,@RequestParam String password){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username",username);
+        User user = userService.getOne(queryWrapper);
+        if(user!=null){
+            return Result.error("400","用户名已存在");
+        }else{
+            User user1 = new User();
+            user1.setUsername(username);
+            user1.setPassword(password);
+            userService.save(user1);
+            return Result.success(user1);
+        }
+    }
+    @GetMapping("/logout")
+    public  Result logout(){
+        //do nothing
+        return Result.success();
+    }
 }
 
