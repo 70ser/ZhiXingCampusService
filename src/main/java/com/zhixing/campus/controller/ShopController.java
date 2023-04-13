@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author ZC
  * @since 2023-04-10
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/shop")
 public class ShopController {

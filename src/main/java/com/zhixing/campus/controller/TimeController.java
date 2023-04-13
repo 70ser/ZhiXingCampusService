@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author WGM
  * @since 2023-04-11
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/time")
 public class TimeController {

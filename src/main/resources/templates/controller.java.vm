@@ -28,6 +28,7 @@ import ${superControllerClassPackage};
  * @author ${author}
  * @since ${date}
  */
+@CrossOrigin
 #if(${restControllerStyle})
 @RestController
 #else

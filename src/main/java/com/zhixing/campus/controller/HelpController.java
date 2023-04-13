@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author WGM
  * @since 2023-04-13
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/help")
 public class HelpController {
