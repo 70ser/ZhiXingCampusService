@@ -28,8 +28,11 @@ public class Time implements Serializable {
         @TableId(value = "id", type = IdType.AUTO)
       private Integer id;
 
+      @ApiModelProperty("用户id号")
+      private Integer userid;
+
       @ApiModelProperty("自习开始时间")
-      private LocalTime timesatrt;
+      private LocalTime timestart;
 
       @ApiModelProperty("自习结束时间")
       private LocalTime timeover;
@@ -39,6 +42,4 @@ public class Time implements Serializable {
 
       @ApiModelProperty("自习科目")
       private String subject;
-
-
 }
