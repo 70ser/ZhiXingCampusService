@@ -22,19 +22,15 @@ public class MatchController {
     public Result matchpeople(@RequestParam Integer id){
         Time time = timeService.getById(id);
         QueryWrapper<Time> wrapper = new QueryWrapper<Time>();
-        wrapper.eq("address",time.getAddress());
-        wrapper.between("timestart",time.getTimestart().minusMinutes(30),time.getTimestart());
-        wrapper.ne("id",id);
-        wrapper.orderByDesc("timestart");
+        wrapper.eq("address",time.getAddress());//地址匹配
+        wrapper.between("timestart",time.getTimestart().minusMinutes(30),time.getTimestart());//通过开始时间前30min之内匹配
+        wrapper.ne("id",id);//排除自己的自习信息
+        wrapper.orderByDesc("timestart");//按时间倒序排列
         List<Time> list=timeService.list(wrapper);
-        //return Result.success(timeService.list(wrapper));
-        //wrapper.eq("address",time.getAddress()).lt("",);
-        //wrapper.orderByDesc("id");
-        if(list.get(0)==null){
-              //return Result.success(list.get(0));
+        //System.out.println(list.size());
+        if(list.size()==0){//通过list的长度判断结果
             return Result.error("400","未匹配到合适的学伴!");
         }else {
-            //return Result.error("400","未匹配到合适的学伴!");
             return Result.success(list.get(0));
         }
     }
