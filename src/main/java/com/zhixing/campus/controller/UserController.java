@@ -1,7 +1,7 @@
 package com.zhixing.campus.controller;
 
 
-import cn.hutool.crypto.SecureUtil;
+//import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -67,7 +67,7 @@ public class UserController {
     }
     @GetMapping("/login")
     public  Result login(@RequestParam String username,@RequestParam String password){
-        password= SecureUtil.md5(password);
+        //password= SecureUtil.md5(password);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username",username);
         queryWrapper.eq("password",password);
@@ -86,7 +86,7 @@ public class UserController {
         if(user!=null){
             return Result.error("400","用户名已存在");
         }else{
-            password= SecureUtil.md5(password);
+            //password= SecureUtil.md5(password);
             User user1 = new User();
             user1.setUsername(username);
             user1.setPassword(password);
