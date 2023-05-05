@@ -31,13 +31,13 @@ public class Shop implements Serializable {
       private String shopName;
 
       @ApiModelProperty("商品价格")
-      private Object shopPrice;
+      private Double shopPrice;
 
       @ApiModelProperty("商品描述")
       private String shopDescription;
 
       @ApiModelProperty("商品发布人")
-      private String shopOwner;
+      private Integer shopOwner;
 
 
 }
