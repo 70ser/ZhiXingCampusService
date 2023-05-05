@@ -3,7 +3,6 @@ package com.zhixing.campus.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhixing.campus.entity.User;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,7 +29,6 @@ public class ShopController {
 
     @Resource
     private IShopService shopService;
-
     // 新增或者更新
     @PostMapping
     public Result save(@RequestBody Shop shop) {
@@ -70,13 +68,21 @@ public class ShopController {
     //模糊查询，根据商品名字搜索....9090/shop/search?name=???
     @GetMapping("/search")
     public Result findname(@RequestParam String name){
-        QueryWrapper<Shop> wrapper = new QueryWrapper<Shop>();
+        QueryWrapper<Shop> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotBlank(name),"shop_name",name);
         wrapper.orderByDesc("id");
         if(shopService.getOne(wrapper) != null)
             return Result.success(shopService.list(wrapper));
         else
             return Result.error("400","未搜索到相关商品");
+    }
+
+    @GetMapping("/last")
+    public Result findLastOne(){
+        QueryWrapper<Shop> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("id");
+        wrapper.last("limit 1");
+        return Result.success(shopService.getOne(wrapper));
     }
 
 }
