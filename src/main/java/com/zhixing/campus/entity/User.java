@@ -30,7 +30,7 @@ public class User implements Serializable {
         @TableId(value = "id", type = IdType.AUTO)
       private Integer id;
 
-      @ApiModelProperty("用户名，允许重复")
+      @ApiModelProperty("用户名，不允许重复")
       private String username;
 
       @ApiModelProperty("用户密码，最好使用md5加密")

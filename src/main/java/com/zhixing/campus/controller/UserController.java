@@ -58,6 +58,13 @@ public class UserController {
         return Result.success(userService.getById(id));
     }
 
+    @GetMapping("/name/{username}")
+    public Result findUserByName(@PathVariable String username){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username",username);
+        return Result.success(userService.getOne(queryWrapper));
+    }
+
     @GetMapping("/page")
     public Result findPage(@RequestParam Integer pageNum,
                                 @RequestParam Integer pageSize) {
