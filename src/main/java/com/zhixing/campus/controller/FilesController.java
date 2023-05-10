@@ -30,12 +30,12 @@ public class FilesController {
             String  timeStamp = String.valueOf(DateUtil.current());
             filename = timeStamp + parts;
             BasicAWSCredentials credentials = new BasicAWSCredentials(
-                    "09aba217bdc2f4c2a27f2bf504bbfbdc",
-                    "fd37ba61ab6015a4a58be98dccddf07e391ac6b9a5d0a3129c37786083481189");
+                    "accessKey",
+                    "secretKey");
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                     .withEndpointConfiguration(
                             new AwsClientBuilder.EndpointConfiguration(
-                                    "https://0ce8c6bc72fff37eb614635de9908c5e.r2.cloudflarestorage.com/zhixingcampus",
+                                    "https://endpoint.r2.cloudflarestorage.com/zhixingcampus",
                                     "apac"))
                     .withCredentials(new AWSStaticCredentialsProvider(credentials))
                     .build();
@@ -45,7 +45,7 @@ public class FilesController {
             metadata.setContentLength(file.getSize());
             metadata.setContentType(file.getContentType());
             s3Client.putObject(bucketName, filename, file.getInputStream(), metadata);
-            return Result.success("https://files.zhix.tk/"+filename);
+            return Result.success("https://files.domain.com/"+filename);
         } catch (IOException e) {
             e.printStackTrace();
             return Result.error();
@@ -59,12 +59,12 @@ public class FilesController {
             String contentType = request.getContentType();
             String  timeStamp = String.valueOf(DateUtil.current());
             BasicAWSCredentials credentials = new BasicAWSCredentials(
-                    "09aba217bdc2f4c2a27f2bf504bbfbdc",
-                    "fd37ba61ab6015a4a58be98dccddf07e391ac6b9a5d0a3129c37786083481189");
+                    "accessKey",
+                    "secretKey");
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                     .withEndpointConfiguration(
                             new AwsClientBuilder.EndpointConfiguration(
-                                    "https://0ce8c6bc72fff37eb614635de9908c5e.r2.cloudflarestorage.com/zhixingcampus",
+                                    "https://endpoint.r2.cloudflarestorage.com/zhixingcampus",
                                     "apac"))
                     .withCredentials(new AWSStaticCredentialsProvider(credentials))
                     .build();
@@ -79,7 +79,7 @@ public class FilesController {
             String type = contentType.substring(contentType.lastIndexOf("/")+1);//不带.
             String name = timeStamp + "." + type;
             s3Client.putObject(bucketName, name, inputStream, metadata);
-            return Result.success("https://files.zhix.tk/"+name);
+            return Result.success("https://files.domain.com/"+name);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.error();

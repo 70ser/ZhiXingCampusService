@@ -17,7 +17,7 @@ public class CodeGenerator {
     }
 
     private static void generate() {
-        FastAutoGenerator.create("jdbc:mysql://47.115.226.135:3306/zhixing?serverTimezone=GMT%2b8", "zhixingu", "Zx123456789.")
+        FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/zhixing?serverTimezone=GMT%2b8", "zhixingu", "Zx123456789.")
                 .globalConfig(builder -> {
                     builder.author("WGM") // 设置作者
                             .enableSwagger() // 开启 swagger 模式

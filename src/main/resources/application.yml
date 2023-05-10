@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.115.226.135:3306/zhixing?serverTimezone=GMT%2b8
+    url: jdbc:mysql://127.0.0.1:3306/zhixing?serverTimezone=GMT%2b8
     username: zhixingu
     password: Zx123456789.
   mvc:
